@@ -1,0 +1,133 @@
+/*Gonna use this color scheme: http://www.color-hex.com/color-palette/21953, also cool font is "sansita one"*/
+
+#weather {
+  margin: 0 auto;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: 100%;
+  height: auto;
+  border: 12px solid white;
+  border-radius: 8px;
+  background-color: rgba(125, 249, 255, 0.1);
+}
+
+h1,
+ul,
+#tempFar,
+#tempCel,
+#descr {
+  font-family: "sansita one";
+}
+
+h1 {
+  font-size: 4em;
+  color: #ffec8b;
+}
+
+#tempFar,
+#tempCel {
+  color: white;
+  font-size: 16em;
+  padding-top: 1%;
+}
+
+ul {
+  color: #ffec8b;
+  font-size: 1.5em;
+}
+
+#weather-img {
+  color: white;
+  font-size: 15.75em;
+  height: 15px;
+  margin: 0 auto;
+}
+
+#descr {
+  color: white;
+  font-size: 3.5em;
+  margin-top: 2%;
+}
+
+body {
+  background-color: #333;
+  margin: 0 auto;
+}
+
+#location {
+  padding-left: 1%;
+  display: block;
+}
+
+.unit,
+#textCel,
+#windSpeedMph {
+  display: none;
+}
+
+#tempFar,
+#tempCel {
+  margin: 0 auto;
+}
+
+#temp{
+  display:block;
+  /*float: left;*/
+  text-align:center;
+  width: 100%;
+  /*padding-left: 10%;*/
+}
+
+#iconAndDesc{
+  display: block;
+  /*float:left;*/
+  width: 100%;
+  /*padding-left: 10%;*/
+}
+
+/*#weather-img,
+#descr {
+  padding-left: 20%;
+}*/
+
+ul {
+  clear: both;
+  list-style-type: none;
+  padding-left: 10%;
+  display: inline-block;
+}
+
+#unitButton{
+  display: block;
+  clear: both;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.btn-lg {
+  margin: 0 auto;
+  display: block;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  outline: none;
+  box-shadow: none;
+  border: solid 5px white;
+  border-radius: 5px;
+  font-family: "sansita one";
+  font-size: 1.5em;
+}
+
+.buttonText {
+  margin: 0px;
+}
+
+.btn-lg:hover {
+  border: solid 5px #ffec8b;
+  color: #ffec8b;
+  
+  font-size: 1.52em;
+}
+
+.btn-lg:focus {
+    color: white;
+}

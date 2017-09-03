@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+
+  <link href="https://fonts.googleapis.com/css?family=Sansita+One" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+    <!--In case you forget, this is why the box and all the info in it is on the left side. You want to put it in the middle. Might requrire making 3 divs and putting #weather in the 2nd one. Try it when you come back-->
+
+    <div class="row">
+      <div id="weather" class="col-xs-10 col-sm-8 col-md-6 col-lg-6">
+        <!--This is the div that will contain all of the weather info-->
+        <h1 id="location">
+        </h1>
+        <div id="temp" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="unit" id="tempFar">
+            <!--This div contains the temperature. Find a way to toggle between tempFar and tempCel jQuery vars-->
+          </div>
+          <div id="tempCel">
+          </div>
+        </div>
+        <div id="iconAndDesc" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+          <!--This div will contain the svg weather icon as determined by the jQuery script. Floats to the right of #tempFar div-->
+          <p id="imgAndDescr"></p>
+        </div>
+        <!--Jquery cases will determine what SVG will go here-->
+      
+      <div id="humidWind">
+        <!--Weather list items div, clears above div-->
+        <ul>
+          <li id="descr"></li>
+          <li id="humidity"></li>
+          <li id="windSpeedMph"></li>
+          <li id="windSpeedKph"></li>
+        </ul>
+      </div>
+      <div id="unitButton">
+        <button id="unit_toggle" class="btn btn-lg"><p id="textFar" class="buttonText">Click for °F</p><p id="textCel" class="buttonText">Click for °C</p></button>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+</html>
