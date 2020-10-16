@@ -3,7 +3,7 @@ var weatherApp = function() {
   //var lat = position.coords.latitude;
   //var lon = position.coords.longitude;
   //var apiKey = "dc8dfec1388640a990b222829171407&q=";
-  var apiKey = "da7566dd2c698dae6818c938c7e6f2177";
+  var apiKey = "a7566dd2c698dae6818c938c7e6f2177";
   
   if (navigator.geolocation) {
 navigator.geolocation.getCurrentPosition(function(position) {
@@ -16,7 +16,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
     //var weatherApi = "https://api.apixu.com/v1/current.json?key=" + apiKey + lat +","+ lon;
     //var weatherApi = "http://api.weatherstack.com/current?access_key=a7566dd2c698dae6818c938c7e6f2177&query=London,%20United%20Kingdom" + apiKey + lat +","+ lon;
-    var weatherApi = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${lat},${lon}`;
+    var weatherApi = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${lat},${lon}&units=f`;
 
 
     console.log(weatherApi);
@@ -24,20 +24,26 @@ navigator.geolocation.getCurrentPosition(function(position) {
     $.getJSON(weatherApi, function(data) {
       console.log(data.location.name);
       var location = data.location.name + ", " + data.location.region;
-      var tempFarenheit = Math.round(data.current.temp_f) + "°F";
-      //var tempCelsius = Math.round((data.current_f - 32) * 0.5556) + "°C";
-      var tempCelsius = Math.round(data.current.temp_c) + "°C";
+      console.log(location)
+      var tempFarenheit = Math.round(data.current.temperature) + "°F";
+      var tempCelsius = Math.round((data.current.temperature - 32) * 0.5556) + "°C";
+      console.log(tempCelsius)
+      console.log(tempFarenheit)
+      //var tempCelsius = Math.round(data.current.temp_c) + "°C";
       var humidity = data.current.humidity;
+      console.log(humidity)
      /* var id = data.weather[0].id; //this is for parsing through openweather maps weather codes, if I ever decided to switch back to that api... corresponds with line 68*/
-      var id = data.current.condition.code; //line 68 relies on this object now that I switched to apixu
-      var descr = data.current.condition.text;
+      //var id = data.current.condition.code; //line 68 relies on this object now that I switched to apixu
+      var id = data.current.weather_code; //line 68 relies on this object now that I switched to apixu
+      //var descr = data.current.condition.text;
+      let descr = data.current.weather_descriptions
       console.log(descr + "for line 29!");
       /*var conditionIcon = data.current.condition.icon;
       console.log(conditionIcon);
       var imageUrl = $('#weather-img').html('<img src= "' + conditionIcon + '">'); was usable when I used open weather app since weather conditions were paired with Erik Flowers' svg iconset. Apixu only provides png's and no svgs' lines 134 and 136 will also be commented out since it relies on these variable declarations*/
       /*var sunUp = data.sys.sunrise;
       var sunDown = data.sys.sunset;*/
-      var windSpeedMph = Math.round(data.current.wind_mph);
+      var windSpeedMph = Math.round(data.current.wind_speed);
       var windSpeedKph = Math.round(windSpeedMph / 0.62137);
       var deg = data.current.wind_degree;
       //var imgAndDescr = $("#imgAndDescr").html("<p> <span id='weather-img'>"+imageUrl+ "</span><br /><span id='descr'>" +descr+ "</span></p>")
@@ -61,7 +67,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         snow: [600, 601, 602, 615, 616, 620, 621, 622],
         freezingRain: [511, 611, 612],
         clearSky: [1000],
-        clouds: [801, 802, 803],
+        clouds: [122, 802, 803],
         cloudy: [804],
         tropicalStorm: [901],
         hurricane: [902, 962],
