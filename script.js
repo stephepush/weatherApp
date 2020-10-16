@@ -2,7 +2,8 @@ var weatherApp = function() {
   
   //var lat = position.coords.latitude;
   //var lon = position.coords.longitude;
-  var apiKey = "dc8dfec1388640a990b222829171407&q=";
+  //var apiKey = "dc8dfec1388640a990b222829171407&q=";
+  var apiKey = "da7566dd2c698dae6818c938c7e6f2177";
   
   if (navigator.geolocation) {
 navigator.geolocation.getCurrentPosition(function(position) {
@@ -13,7 +14,10 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
     //now onto the weather api
 
-    var weatherApi = "https://api.apixu.com/v1/current.json?key=" + apiKey + lat +","+ lon;
+    //var weatherApi = "https://api.apixu.com/v1/current.json?key=" + apiKey + lat +","+ lon;
+    //var weatherApi = "http://api.weatherstack.com/current?access_key=a7566dd2c698dae6818c938c7e6f2177&query=London,%20United%20Kingdom" + apiKey + lat +","+ lon;
+    var weatherApi = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${lat},${lon}`;
+
 
     console.log(weatherApi);
     
