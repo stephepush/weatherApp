@@ -1,14 +1,15 @@
-var weatherApp = function() {
+let weatherApp = function() {
   
   //var lat = position.coords.latitude;
   //var lon = position.coords.longitude;
   //var apiKey = "dc8dfec1388640a990b222829171407&q=";
-  var apiKey = "a7566dd2c698dae6818c938c7e6f2177";
+  //var apiKey = "a7566dd2c698dae6818c938c7e6f2177";
+  const apiKey = "bca6de14eec3611372e8c6957e2aa63f";
   
   if (navigator.geolocation) {
 navigator.geolocation.getCurrentPosition(function(position) {
-    var lat = position.coords.latitude;
-    var lon = position.coords.longitude;
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
     //console.log(lat);
     //console.log(lon);
 
@@ -16,36 +17,46 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
     //var weatherApi = "https://api.apixu.com/v1/current.json?key=" + apiKey + lat +","+ lon;
     //var weatherApi = "http://api.weatherstack.com/current?access_key=a7566dd2c698dae6818c938c7e6f2177&query=London,%20United%20Kingdom" + apiKey + lat +","+ lon;
-    var weatherApi = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${lat},${lon}&units=f`;
-
+    //var weatherApi = `https://api.weatherstack.com/current?access_key=${apiKey}&query=${lat},${lon}&units=f`;
+    let weatherApi = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
 
     console.log(weatherApi);
     
+    
     $.getJSON(weatherApi, function(data) {
-      console.log(data.location.name);
-      var location = data.location.name + ", " + data.location.region;
+      console.log(data);
+      console.log(data.main.temp);
+      //var location = data.name + ", " + data.location.region;
+      //^ this can be modified if you find an api that shows region/state
+      let location = data.name;
       console.log(location)
-      var tempFarenheit = Math.round(data.current.temperature) + "°F";
-      var tempCelsius = Math.round((data.current.temperature - 32) * 0.5556) + "°C";
+      let tempKelvin = data.main.temp;
+      let kelvinToCelsius = Math.round(tempKelvin - 273.15);
+      let tempCelsius = `${kelvinToCelsius}°C`;
       console.log(tempCelsius)
-      console.log(tempFarenheit)
+      let tempFahrenheit = `${Math.round(kelvinToCelsius * 9/5 + 32)}°F`;
+      console.log(tempFahrenheit)
+      //let tempFahrenheit = Math.round(data.current.temperature) + "°F";
+      //let tempCelsius = Math.round((data.current.temperature - 32) * 0.5556) + "°C";
+      console.log(tempCelsius)
+      console.log(tempFahrenheit + " again!")
       //var tempCelsius = Math.round(data.current.temp_c) + "°C";
-      var humidity = data.current.humidity;
+      let humidity = data.main.humidity;
       console.log(humidity)
      /* var id = data.weather[0].id; //this is for parsing through openweather maps weather codes, if I ever decided to switch back to that api... corresponds with line 68*/
       //var id = data.current.condition.code; //line 68 relies on this object now that I switched to apixu
-      var id = data.current.weather_code; //line 68 relies on this object now that I switched to apixu
+      let id = data.weather.id; //line 68 relies on this object now that I switched to apixu
       //var descr = data.current.condition.text;
-      let descr = data.current.weather_descriptions
+      let descr = data.weather[0].description;
       console.log(descr + "for line 29!");
       /*var conditionIcon = data.current.condition.icon;
       console.log(conditionIcon);
       var imageUrl = $('#weather-img').html('<img src= "' + conditionIcon + '">'); was usable when I used open weather app since weather conditions were paired with Erik Flowers' svg iconset. Apixu only provides png's and no svgs' lines 134 and 136 will also be commented out since it relies on these variable declarations*/
       /*var sunUp = data.sys.sunrise;
       var sunDown = data.sys.sunset;*/
-      var windSpeedMph = Math.round(data.current.wind_speed);
-      var windSpeedKph = Math.round(windSpeedMph / 0.62137);
-      var deg = data.current.wind_degree;
+      let windSpeedMph = Math.round(data.wind.speed);
+      let windSpeedKph = Math.round(windSpeedMph / 0.62137);
+      let deg = data.wind.deg;
       //var imgAndDescr = $("#imgAndDescr").html("<p> <span id='weather-img'>"+imageUrl+ "</span><br /><span id='descr'>" +descr+ "</span></p>")
       console.log(windSpeedMph + "mph");
       console.log(windSpeedKph + "kph");
@@ -137,7 +148,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         "height": "100%",
       });
       $('#location').text("Current Conditions in " + location + ":");
-      $('#tempFar').text(tempFarenheit);
+      $('#tempFar').text(tempFahrenheit);
       $('#tempCel').text(tempCelsius);
       $('#humidity').text("Humidity: " + humidity + "%");
       $('#descr').text(descr);
@@ -149,7 +160,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
       $('#windSpeedKph').text("Wind Speed/Direction: " + windSpeedKph + "kph " + degToCompass(deg));
 
       $("button").click(function() {
-        $("#tempCel, #tempFar, #textCel, #textFar, #windSpeedMph, #windSpeedKph").toggle();
+        //$("#tempCel, #tempFar, #textCel, #textFar, #windSpeedMph, #windSpeedKph").toggle();
+        $("#tempFar, #tempCel, #textFar, #textCel, #windSpeedKph, #windSpeedMph").toggle();
       });
     }); //end of weather Api
  }); //end of geo api

@@ -24,7 +24,7 @@
           <div class="unit" id="tempFar">
             <!--This div contains the temperature. Find a way to toggle between tempFar and tempCel jQuery vars-->
           </div>
-          <div id="tempCel">
+          <div class="celUnit" id="tempCel">
           </div>
         </div>
         <div id="iconAndDesc" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
@@ -39,11 +39,11 @@
           <li id="descr"></li>
           <li id="humidity"></li>
           <li id="windSpeedMph"></li>
-          <li id="windSpeedKph"></li>
+          <li class="celUnit" id="windSpeedKph"></li>
         </ul>
       </div>
       <div id="unitButton">
-        <button id="unit_toggle" class="btn btn-lg"><p id="textFar" class="buttonText">Click for °F</p><p id="textCel" class="buttonText">Click for °C</p></button>
+        <button id="unit_toggle" class="btn btn-lg"><p id="textFar"class="celUnit" class="buttonText">Click for °F</p><p id="textCel"  class="buttonText">Click for °C</p></button>
       </div>
     </div>
   </div>

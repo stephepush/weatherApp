@@ -59,9 +59,13 @@ body {
   display: block;
 }
 
-.unit,
+/* .unit,
 #textCel,
 #windSpeedMph {
+  display: none;
+} */
+
+.celUnit {
   display: none;
 }
 
