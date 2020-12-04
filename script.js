@@ -136,7 +136,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
           	backgroundImage = "url(insertLink)";
           	break;*/
         default:
-          backgroundImage = "url(https://res.cloudinary.com/dmkct6wfu/image/upload/v1500181648/weather_app/flying-seeds-1533742wind_gug2s0.jpg)";
+          backgroundImage = "url(https://res.cloudinary.com/dmkct6wfu/image/upload/v1607054222/weather_app/flying-seeds-1533742wind_gug2s0_1_1.jpg)";
           break;
       };
 
